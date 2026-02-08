@@ -9,7 +9,6 @@
         body { 
             background-color: #050a12; 
             color: #e2e8f0; 
-            /* UPDATE: Menggunakan new background 7.jpg */
             background-image: linear-gradient(to bottom, rgba(5, 10, 18, 0.7), rgba(5, 10, 18, 0.85)), url('new background 7.jpg'); 
             background-size: cover; 
             background-position: center; 
@@ -20,7 +19,6 @@
         
         .glass { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); }
         
-        /* Seat Styling */
         .seat { 
             width: 14px; height: 14px; 
             border-radius: 4px; 
@@ -96,6 +94,10 @@
         .data-item .label { font-size: 10px; text-transform: uppercase; font-weight: bold; opacity: 0.8; margin-bottom: 5px; letter-spacing: 1px; }
         .data-item .value { font-size: 32px; font-weight: 900; line-height: 1; }
 
+        /* Style untuk input details */
+        input, select { background: rgba(255, 255, 255, 0.05) !important; color: white !important; border: 1px solid rgba(255,255,255,0.1) !important; padding: 12px; border-radius: 12px; width: 100%; outline: none; }
+        input:focus { border-color: #38bdf8 !important; }
+
         @media print { 
             .no-print { display: none !important; } 
             #ticket-ui { display: block !important; padding: 0; }
@@ -169,7 +171,36 @@
                         <span class="text-[10px] opacity-50 font-bold uppercase">Total Amount</span>
                         <span class="text-3xl font-black text-white">RM <span id="total-price">0</span></span>
                     </div>
-                    <button onclick="checkout()" class="w-full bg-sky-500 hover:bg-sky-400 py-5 rounded-2xl font-black uppercase text-xs tracking-[0.3em] transition-all active:scale-95 shadow-lg shadow-sky-500/20">Checkout Now</button>
+                    <button onclick="showBilling()" class="w-full bg-sky-500 hover:bg-sky-400 py-5 rounded-2xl font-black uppercase text-xs tracking-[0.3em] transition-all active:scale-95 shadow-lg shadow-sky-500/20">Checkout Now</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="billing-screen" class="hidden py-20 px-6 max-w-xl mx-auto no-print">
+        <div class="glass p-10 rounded-[40px] border-sky-500/30">
+            <h2 class="text-3xl font-black italic mb-8 uppercase text-center text-white">Billing Details</h2>
+            <div class="space-y-6">
+                <div>
+                    <label class="text-[10px] uppercase font-bold opacity-50 ml-2 mb-2 block">Full Name</label>
+                    <input type="text" id="cust-name" placeholder="Enter your full name">
+                </div>
+                <div>
+                    <label class="text-[10px] uppercase font-bold opacity-50 ml-2 mb-2 block">Phone Number</label>
+                    <input type="text" id="cust-phone" placeholder="e.g. 0123456789">
+                </div>
+                <div>
+                    <label class="text-[10px] uppercase font-bold opacity-50 ml-2 mb-2 block">Payment Method</label>
+                    <select id="pay-method">
+                        <option value="">-- Select Payment --</option>
+                        <option>FPX Online Banking</option>
+                        <option>E-Wallet (Touch n Go / GrabPay)</option>
+                        <option>Credit / Debit Card</option>
+                    </select>
+                </div>
+                <div class="pt-4">
+                    <button onclick="processCheckout()" class="w-full bg-sky-500 hover:bg-sky-400 py-5 rounded-2xl font-black uppercase text-xs tracking-[0.3em] transition-all active:scale-95 shadow-lg shadow-sky-500/20">Confirm & Pay</button>
+                    <button onclick="hideBilling()" class="w-full mt-4 text-[10px] uppercase font-bold opacity-40 hover:opacity-100 transition">Back to selection</button>
                 </div>
             </div>
         </div>
@@ -189,7 +220,7 @@
         </div>
     </section>
 
-    <div class="flex gap-4 justify-center my-20 no-print">
+    <div id="navigation-btns" class="flex gap-4 justify-center my-20 no-print">
         <a href="page1.html" class="bg-white/10 border border-white/20 hover:bg-white/20 text-white px-12 py-4 rounded-full font-bold transition uppercase tracking-widest text-xs">BACK</a>
         <a href="page3.html" class="bg-sky-500 hover:bg-sky-400 text-white px-12 py-4 rounded-full font-bold transition uppercase tracking-widest text-xs shadow-lg shadow-sky-500/20">NEXT: MERCHANDISE</a>
     </div>
@@ -306,13 +337,35 @@
             document.getElementById('zone-selector').classList.remove('hidden'); 
         }
 
-        function checkout() {
+        /* FUNGSI BARU UNTUK BILLING */
+        function showBilling() {
             if(cart.length === 0) return alert("Your cart is empty!");
+            document.getElementById('selection-screen').classList.add('hidden');
+            document.getElementById('navigation-btns').classList.add('hidden');
+            document.getElementById('billing-screen').classList.remove('hidden');
+            window.scrollTo(0,0);
+        }
+
+        function hideBilling() {
+            document.getElementById('billing-screen').classList.add('hidden');
+            document.getElementById('selection-screen').classList.remove('hidden');
+            document.getElementById('navigation-btns').classList.remove('hidden');
+        }
+
+        function processCheckout() {
+            const name = document.getElementById('cust-name').value;
+            const phone = document.getElementById('cust-phone').value;
+            const method = document.getElementById('pay-method').value;
+
+            if(!name || !phone || !method) return alert("Please fill in all details before proceeding.");
+
             if(confirm(`Proceed to payment for RM${document.getElementById('total-price').innerText}?`)) {
-                document.getElementById('selection-screen').classList.add('hidden');
+                document.getElementById('billing-screen').classList.add('hidden');
                 document.getElementById('ticket-ui').classList.remove('hidden');
+                
                 const orderId = "BE-" + Math.random().toString(36).substr(2, 9).toUpperCase();
                 document.getElementById('order-id').innerText = "Order Reference: #" + orderId;
+                
                 const ticketContainer = document.getElementById('ticket-container');
                 ticketContainer.innerHTML = '';
                 cart.forEach(s => {
