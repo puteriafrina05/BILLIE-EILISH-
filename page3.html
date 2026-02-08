@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Billie Eilish | Merch</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background-color: #050a12; 
+            color: #e2e8f0; 
+            /* Background ditukar ke new background 8.jpg mengikut permintaan */
+            background: linear-gradient(to bottom, rgba(5, 10, 18, 0.6), rgba(5, 10, 18, 0.6)), url('new background 8.jpg');
+            background-size: cover; 
+            background-position: center; 
+            background-attachment: fixed; 
+            background-repeat: no-repeat; 
+            min-height: 100vh;
+        }
+        .glass {background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px);}
+        input, select, textarea { background: rgba(0, 0, 0, 0.5) !important; color: white !important; border: 1px solid rgba(255,255,255,0.2) !important; padding: 10px; border-radius: 8px; width: 100%; outline: none;}
+        @media print { .no-print { display: none; } body { background: white; color: black; } .glass { border: 1px solid #ccc; color: black; } }
+    </style>
+</head>
+<body>
+    <nav class="w-full py-4 px-10 glass flex justify-between items-center text-[10px] tracking-widest uppercase font-bold sticky top-0 z-50 no-print">
+        <div class="text-xl italic">Billie Eilish</div>
+        <div class="flex space-x-8">
+            <a href="page1.html" class="hover:text-sky-400 transition">Home</a>
+            <a href="page2.html" class="hover:text-sky-400 transition">Tickets</a>
+            <a href="page3.html" class="underline underline-offset-8 decoration-sky-500 text-sky-400">Merchandise</a>
+            <a href="page4.html" class="hover:text-sky-400 transition">Media</a>
+        </div>
+        <div>
+            <p><audio controls autoplay>
+        <source src="birds of a feather song.mp3" type="audio/mpeg">
+        </audio></p>
+        </div>
+    </nav>
+
+    <section id="merchSection" class="py-20 px-6 max-w-6xl mx-auto text-center no-print">
+        <h2 class="text-4xl font-black italic mb-12 uppercase">Merchandise</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+            <div class="glass p-4 rounded-xl">
+                <img src="rm200.jpg" class="rounded-xl aspect-square object-cover mb-4" alt="Cassette">
+                <p class="mb-2 font-bold">ALBUM TAPE CASSETTE - RM200</p>
+                <button onclick="addToCart('Album Tape Cassette', 200, false)" class="bg-white text-black w-full py-2 rounded-full font-bold text-xs uppercase hover:bg-sky-400 transition">Add to Cart</button>
+            </div>
+
+            <div class="glass p-4 rounded-xl">
+                <img src="rm120.jpg" class="rounded-xl aspect-square object-cover mb-4" alt="T-Shirt">
+                <p class="mb-2 font-bold">BLACK COTTON T-SHIRT - RM120</p>
+                <select id="size2" class="mb-2 text-xs uppercase"><option>Size S</option><option>Size M</option><option>Size L</option></select>
+                <button onclick="addToCart('Black Cotton T-Shirt', 120, 'size2')" class="bg-white text-black w-full py-2 rounded-full font-bold text-xs uppercase hover:bg-sky-400 transition">Add to Cart</button>
+            </div>
+
+            <div class="glass p-4 rounded-xl">
+                <img src="rm110.jpg" class="rounded-xl aspect-square object-cover mb-4" alt="Beanie">
+                <p class="mb-2 font-bold">BLOHSH KNIT BEANIE - RM110</p>
+                <button onclick="addToCart('Blohsh Knit Beanie', 110, false)" class="bg-white text-black w-full py-2 rounded-full font-bold text-xs uppercase hover:bg-sky-400 transition">Add to Cart</button>
+            </div>
+
+            <div class="glass p-4 rounded-xl">
+                <img src="rm270.jpg" class="rounded-xl aspect-square object-cover mb-4" alt="Hoodie">
+                <p class="mb-2 font-bold">BLACK PULLOVER HOODIE - RM270</p>
+                <select id="size4" class="mb-2 text-xs uppercase"><option>Size S</option><option>Size M</option><option>Size L</option></select>
+                <button onclick="addToCart('Black Pullover Hoodie', 270, 'size4')" class="bg-white text-black w-full py-2 rounded-full font-bold text-xs uppercase hover:bg-sky-400 transition">Add to Cart</button>
+            </div>
+
+            <div class="glass p-4 rounded-xl">
+                <img src="rm115.jpg" class="rounded-xl aspect-square object-cover mb-4" alt="T-Shirt 2">
+                <p class="mb-2 font-bold">ILLUSTRATION T-SHIRT - RM115</p>
+                <select id="size5" class="mb-2 text-xs uppercase"><option>Size S</option><option>Size M</option><option>Size L</option></select>
+                <button onclick="addToCart('Illustration T-Shirt', 115, 'size5')" class="bg-white text-black w-full py-2 rounded-full font-bold text-xs uppercase hover:bg-sky-400 transition">Add to Cart</button>
+            </div>
+
+            <div class="glass p-4 rounded-xl">
+                <img src="rm100.jpg" class="rounded-xl aspect-square object-cover mb-4" alt="Necklace">
+                <p class="mb-2 font-bold">BLOHSH NECKLACE - RM100</p>
+                <button onclick="addToCart('Blohsh Necklace', 100, false)" class="bg-white text-black w-full py-2 rounded-full font-bold text-xs uppercase hover:bg-sky-400 transition">Add to Cart</button>
+            </div>
+        </div>
+
+        <div id="formSection" class="hidden max-w-lg mx-auto glass p-8 rounded-2xl text-left mb-20">
+            <h3 class="text-xl font-bold mb-6 border-b border-white/20 pb-2">BILLING DETAILS</h3>
+            <div id="cartSummary" class="mb-6 text-sky-400 font-bold uppercase text-xs"></div>
+            <div class="space-y-4">
+                <input type="text" id="name" placeholder="Full Name">
+                <input type="text" id="phone" placeholder="Phone Number">
+                <textarea id="address" placeholder="Shipping Address"></textarea>
+                <select id="bank">
+                    <option value="">-- Select Bank --</option>
+                    <option>Maybank</option>
+                    <option>CIMB Bank</option>
+                    <option>Public Bank</option>
+                    <option>RHB Bank</option>
+                    <option>Bank Islam</option>
+                </select>
+                <button onclick="doneOrder()" class="bg-sky-500 w-full py-3 rounded-xl font-bold uppercase tracking-widest transition hover:bg-sky-400 shadow-lg shadow-sky-500/20">Complete Purchase</button>
+            </div>
+        </div>
+
+        <div class="flex gap-4 justify-center mb-20">
+            <a href="page2.html" class="px-10 py-3 rounded-full border border-white/30 uppercase tracking-widest text-[10px] font-bold hover:bg-white/10 transition">Back</a>
+            <a href="page4.html" class="px-10 py-3 rounded-full bg-sky-500 text-white uppercase tracking-widest text-[10px] font-bold hover:bg-sky-400 transition shadow-lg shadow-sky-500/20">Next: Media</a>
+        </div>
+
+        <footer class="text-center pb-10">
+            <div class="text-[10px] tracking-[0.4em] uppercase font-medium space-y-3 opacity-60">
+                <p>Darkroom / Interscope Records</p>
+                <p class="text-sky-400">Organized by DTR Nation</p>
+                <p class="mt-4 opacity-40">© 2026 Billie Eilish</p>
+            </div>
+        </footer>
+    </section>
+
+    <div id="receipt" class="hidden max-w-2xl mx-auto my-10 p-10 glass rounded-3xl border-2 border-sky-500">
+        <h1 class="text-3xl font-black italic text-center mb-4">OFFICIAL RECEIPT</h1>
+        <p class="text-center text-xs tracking-widest opacity-70 mb-8 uppercase">Billie Eilish World Tour Merch</p>
+        <div class="space-y-3 text-sm">
+            <p><strong>Tracking No:</strong> <span id="rTracking" class="text-sky-400 font-mono text-lg"></span></p>
+            <p><strong>Customer:</strong> <span id="rName"></span></p>
+            <p><strong>Phone:</strong> <span id="rPhone"></span></p>
+            <p><strong>Address:</strong> <span id="rAddress"></span></p>
+            <p><strong>Bank:</strong> <span id="rBank"></span></p>
+            <div class="border-y border-white/20 py-4 my-4">
+                <p><strong>Items Ordered:</strong></p>
+                <p id="rItems" class="italic opacity-80 mt-2"></p>
+            </div>
+            <p class="text-xl font-bold text-right">Total Paid: RM <span id="rTotal"></span></p>
+        </div>
+        <div class="mt-10 flex justify-center gap-4 no-print">
+            <button onclick="window.print()" class="bg-white text-black px-8 py-2 rounded-full font-bold uppercase text-xs">Print Slip</button>
+            <button onclick="location.reload()" class="border border-white/30 px-8 py-2 rounded-full font-bold uppercase text-xs">New Order</button>
+        </div>
+    </div>
+
+    <script>
+        let cart = { name: '', price: 0, size: '' };
+
+        function addToCart(name, price, sizeId) {
+            cart.name = name;
+            cart.price = price;
+            cart.size = sizeId ? document.getElementById(sizeId).value : 'No Size';
+            
+            document.getElementById('formSection').classList.remove('hidden');
+            document.getElementById('cartSummary').innerText = `Selected: ${cart.name} (${cart.size}) - RM${cart.price}`;
+            
+            document.getElementById('formSection').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function doneOrder() {
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const address = document.getElementById('address').value;
+            const bank = document.getElementById('bank').value;
+
+            if(!name || !phone || !address || !bank) { 
+                alert("Please fill all details!"); 
+                return; 
+            }
+
+            const trackNo = "BE" + Math.floor(Math.random() * 90000000 + 10000000);
+            document.getElementById('merchSection').classList.add('hidden');
+            document.getElementById('rName').innerText = name;
+            document.getElementById('rPhone').innerText = phone;
+            document.getElementById('rAddress').innerText = address;
+            document.getElementById('rBank').innerText = bank;
+            document.getElementById('rTracking').innerText = trackNo;
+            document.getElementById('rItems').innerText = `${cart.name} (${cart.size})`;
+            document.getElementById('rTotal').innerText = cart.price;
+            document.getElementById('receipt').classList.remove('hidden');
+            window.scrollTo(0,0);
+        }
+    </script>
+</body>
+</html>
