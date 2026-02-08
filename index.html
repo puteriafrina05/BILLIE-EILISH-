@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Billie Eilish | Home</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #050a12; color: #e2e8f0; margin: 0; overflow-x: hidden; }
+        .bg-custom {
+            background: linear-gradient(to bottom, rgba(5, 10, 18, 0.7), rgba(5, 10, 18, 0.8)), url('hit me hard and soft 3.jpg');
+            background-size: cover; 
+            background-position: center; 
+            background-attachment: fixed;
+            height: 100vh;
+            width: 100%;
+        }
+        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        
+        .interesting-font {
+            font-family: 'Impact', 'Arial Black', sans-serif;
+        }
+
+        /* New interesting font for the information box */
+        .info-font {
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+    </style>
+</head>
+<body class="bg-custom">
+    <nav class="fixed w-full z-50 py-4 px-10 glass flex justify-between items-center text-[10px] tracking-widest uppercase font-bold">
+        <div class="text-xl italic">Billie Eilish</div>
+        <div class="space-x-8">
+            <a href="page1.html" class="underline underline-offset-8 decoration-sky-500">Home</a>
+            <a href="page2.html" class="hover:underline underline-offset-8">Tickets</a>
+            <a href="page3.html" class="hover:underline underline-offset-8">Merchandise</a>
+            <a href="page4.html" class="hover:underline underline-offset-8">Media</a>
+        </div>
+        <p>
+            <audio controls autoplay>
+                <source src="birds of a feather song.mp3" type="audio/mpeg">
+            </audio>
+        </p>
+    </nav>
+
+    <section class="h-full flex flex-col items-center justify-center text-center">
+        <br><br><br><br>
+        <h1 class="text-sky-400 tracking-[0.5em] mb-4 uppercase text-xs">Hit Me Hard and Soft: The Tour</h1>
+
+        <div class="w-full overflow-hidden">
+            <marquee behavior="scroll" direction="left" scrollamount="18">    
+                <h2 class="interesting-font text-6xl md:text-8xl font-black italic uppercase mb-8 px-10 bg-gradient-to-r from-sky-300 via-white to-sky-500 bg-clip-text text-transparent drop-shadow-[0_10px_20px_rgba(56,189,248,0.5)]" style="display: inline-block; white-space: nowrap;">
+                    SOLO CONCERT OF BILLIE EILISH
+                </h2>
+            </marquee>
+        </div>
+
+        <div class="glass p-8 rounded-2xl text-left max-w-md w-full border-l-4 border-sky-500 mb-12 mx-6 info-font">
+            <p>DATE: 14 FEBRUARY 2026</p>
+            <p>TIME: 8:00 P.M. — 12:00 A.M.</p>
+            <p>PLACE: BUKIT JALIL NATIONAL STADIUM, KUALA LUMPUR</p>
+        </div>
+
+        <div class="mt-12 flex gap-8 text-xs font-bold uppercase tracking-widest">
+            <a href="https://www.instagram.com/billieeilish/" target="_blank" class="hover:text-sky-400">Instagram</a>
+            <a href="https://www.tiktok.com/@billieeilish?lang=en" target="_blank" class="hover:text-sky-400">TikTok</a>
+            <a href="https://www.youtube.com/@BillieEilishVEVO" target="_blank" class="hover:text-sky-400">YouTube</a>
+        </div>
+        
+        <br><br>
+        <div class="flex gap-4">
+            <a href="page2.html" class="bg-sky-500 hover:bg-sky-400 text-white px-10 py-3 rounded-full font-bold transition uppercase tracking-widest text-xs">NEXT: TICKETS</a>
+        </div>
+    </section>
+
+    <footer class="py-10 text-center border-t border-white/5 opacity-50">
+        <div class="text-[10px] tracking-[0.4em] uppercase font-medium space-y-2">
+            <p>Darkroom / Interscope Records</p>
+            <p class="text-sky-400">Organized by DTR Nation</p>
+            <p class="mt-4 opacity-40">© 2026 Billie Eilish</p>
+        </div>
+    </footer>
+</body>
+</html>
