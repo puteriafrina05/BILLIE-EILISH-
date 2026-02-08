@@ -110,7 +110,7 @@
         let selectedSeats = [];
         const pricePerSeat = 598;
 
-        // Generate Original Seat Grid
+        // Kod asal anda untuk generate seat
         for (let i = 1; i <= 100; i++) {
             const seat = document.createElement('div');
             seat.className = 'seat bg-white/10';
@@ -151,20 +151,20 @@
                 return;
             }
 
-            // Hide everything else
             document.getElementById('billingSection').classList.add('hidden');
             
-            // Fill Slip Data
             document.getElementById('dispName').innerText = name;
             document.getElementById('dispPayment').innerText = pay;
             document.getElementById('dispSeats').innerText = selectedSeats.join(', ');
             document.getElementById('dispTotal').innerText = selectedSeats.length * pricePerSeat;
             document.getElementById('dispOrderID').innerText = "BE-" + Math.floor(Math.random() * 900000 + 100000);
 
-            // Show Ticket
             document.getElementById('ticketSlip').classList.remove('hidden');
             window.scrollTo(0,0);
         }
     </script>
 </body>
 </html>
+</body>
+</html>
+
